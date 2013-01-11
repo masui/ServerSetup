@@ -16,6 +16,12 @@
 #   % cd ServerSetup
 #   % make hondana, etc.
 #
+# ■ DNS設定が別途必要
+#    a @ 49.212.141.128
+#    a * 49.212.141.128
+#    mx @ 10
+#    mx @ 10 ml
+#
 # ■ メールだけ普通にインストールする場合はpostfixとdovecotだけ
 #    インストールすればいいが、QuickMLを入れても損は無いと思う
 #
