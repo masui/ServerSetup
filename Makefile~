@@ -64,10 +64,12 @@ quickml: ruby
 	echo '10 * * * * /usr/sbin/postfix stop; /usr/sbin/postfix start; /usr/local/sbin/quickml-ctl restart' > /tmp/crontab
 	sudo crontab /tmp/crontab
 
-gyazz: passenger
+gyazzdir:
+	@if ! test -e /home/masui/Gyazz; then cd; git clone https://github.com/masui/Gyazz.git; fi
+
+gyazz: gyazzdir passenger
 	-sudo gem install sinatra
 	-sudo gem install json
-	-cd; git clone https://github.com/masui/Gyazz.git
 	cat Gyazz/lib/config.rb | sed \
 		-e 's!%HOME%!${HOME}!' \
 		> ${HOME}/Gyazz/lib/config.rb
@@ -77,9 +79,11 @@ gyazz: passenger
 	chmod 755 ${HOME}
 	sudo apachectl restart
 
+hondanadir:
+	@if ! test -e /home/masui/Hondana; then cd; git clone https://github.com/masui/Hondana.git; fi
+
 hondana: passenger mysql
 	sudo gem install rails --version 2.3.11 
-	-cd; git clone https://github.com/masui/Hondana.git
 	-sudo mkdir /var/log/httpd/hondana
 	-echo 'drop database hondana' | mysql -u root
 	echo 'create database hondana' | mysql -u root
@@ -87,7 +91,7 @@ hondana: passenger mysql
 	chmod 755 ${HOME}
 	sudo apachectl restart
 
-apache:
+apache: gyazzdir hondanadir
 	sudo yum -y install httpd
 	sudo chkconfig httpd on
 	cat etc/httpd/conf/httpd.conf | sed \
@@ -96,6 +100,7 @@ apache:
 		-e 's!%HOME%!${HOME}!' \
 		> /tmp/httpd.conf
 	sudo mv /tmp/httpd.conf /etc/httpd/conf/httpd.conf
+	sudo apachectl restart
 
 mysql:
 	sudo yum -y install mysql-server
