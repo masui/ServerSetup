@@ -8,6 +8,10 @@
 # ノートパソコンにもこの手のものを用意しておけば、新しい
 # パソコンを買ってもすぐに環境設定ができて嬉しいかもしれない。
 #
+# 年間1000円でドメイン取って月額1000円で自由にサーバ運用
+# できるというのは非常にお得な話だと思う。セットアップが
+# 楽だったら誰もが使うのでは?
+#
 # ■ masui.orgのセットアップの場合
 #
 # hondana.masui.org とか enkai@ml.masui.org とか使えるようになる
@@ -32,9 +36,11 @@
 #    インストールすればいいが、QuickMLを入れても損は無いと思う
 #
 # ■ TODO
-#  - Gyazo
-#  - Gyamp (3memo)
-#  - Gyamm
+#  - 普通のWebページ (e.g. http://masui.org/)
+#  - Gyazzのアップロード機能が動いてないかもしれない - 要確認
+#  - Gyazo (gyazo.masui.org)
+#  - Gyamp (memo.masui.org)
+#  - Gyamm (archive.masui.org)
 #
 # 2013/01/11 14:17:47 masui@pitecan.com
 #
