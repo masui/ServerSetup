@@ -29,6 +29,11 @@
 # ■ メールだけ普通にインストールする場合はpostfixとdovecotだけ
 #    インストールすればいいが、QuickMLを入れても損は無いと思う
 #
+# ■ TODO
+#  - Gyazo
+#  - Gyamp (3memo)
+#  - Gyamm
+#
 # 2013/01/11 14:17:47 masui@pitecan.com
 #
 
