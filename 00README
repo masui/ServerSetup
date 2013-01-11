@@ -1,9 +1,0 @@
-% ssh root@masui.org (password:m2e2r4zxs9)
-# adduser masui
-# passwd masui
-# visudo (masui追加)
-# exit
-% ssh masui.org
-% git clone https://github.com/masui/ServerSetup
-% cd ServerSetup
-% make hondana, etc.

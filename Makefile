@@ -1,14 +1,34 @@
 #
-# さくらVPSにGyazzやQuickMLをインストールするスクリプト。
-# サーバのセットアップを一瞬でできるようになっていれば
-# サーバが腐っても困らないはずである。
+# さくらVPSにGyazzやQuickMLをインストールするスクリプト
 #
-
+# サーバのセットアップを一瞬でできるようになっていれば
+# サーバが腐っても困らないはずである
+#
+# ■ masui.orgのセットアップの場合
+#
+#   % ssh root@masui.org (さくらのルートパスワード入力)
+#   # adduser masui
+#   # passwd masui (パスワード入力)
+#   # visudo (rootの行の後にmasui追加)
+#   # exit
+#   % ssh masui.org (masuiでログインしなおし)
+#   % git clone https://github.com/masui/ServerSetup
+#   % cd ServerSetup
+#   % make hondana, etc.
+#
+# ■ メールだけ普通にインストールする場合はpostfixとdovecotだけ
+#    インストールすればいいが、QuickMLを入れても損は無いと思う
+#
 
 DOMAIN=masui.org
 IPADDRESS=49.212.141.128
 EMAIL=masui@pitecan.com
 HOME=/home/masui
+
+all:
+	@echo make quickml
+	@echo make hondana
+	@echo make gyazz
 
 emacs:
 	sudo yum -y install emacs
@@ -65,7 +85,7 @@ quickml: ruby
 	sudo crontab /tmp/crontab
 
 gyazzdir:
-	@if ! test -e /home/masui/Gyazz; then cd; git clone https://github.com/masui/Gyazz.git; fi
+	@if ! test -e ${HOME}/Gyazz; then cd; git clone https://github.com/masui/Gyazz.git; fi
 
 gyazz: gyazzdir passenger
 	-sudo gem install sinatra
@@ -80,7 +100,7 @@ gyazz: gyazzdir passenger
 	sudo apachectl restart
 
 hondanadir:
-	@if ! test -e /home/masui/Hondana; then cd; git clone https://github.com/masui/Hondana.git; fi
+	@if ! test -e #{HOME}/Hondana; then cd; git clone https://github.com/masui/Hondana.git; fi
 
 hondana: passenger mysql
 	sudo gem install rails --version 2.3.11 

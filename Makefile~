@@ -3,12 +3,30 @@
 # サーバのセットアップを一瞬でできるようになっていれば
 # サーバが腐っても困らないはずである。
 #
-
+# ■masui.orgのセットアップの場合
+#  % ssh root@masui.org (さくらのルートパスワード入力)
+#  # adduser masui
+#  # passwd masui (パスワード入力)
+#  # visudo (rootの行の後にmasui追加)
+#  # exit
+#  % ssh masui.org (masuiでログインしなおし)
+#  % git clone https://github.com/masui/ServerSetup
+#  % cd ServerSetup
+#  % make hondana, etc.
+#
+# メールを普通にインストールする場合はpostfixとdovecotだけでいいが
+# QuickMLを入れても損は無いと思う
+#
 
 DOMAIN=masui.org
 IPADDRESS=49.212.141.128
 EMAIL=masui@pitecan.com
 HOME=/home/masui
+
+all:
+	@echo make quickml
+	@echo make hondana
+	@echo make gyazz
 
 emacs:
 	sudo yum -y install emacs
@@ -100,7 +118,7 @@ apache: gyazzdir hondanadir
 		-e 's!%HOME%!${HOME}!' \
 		> /tmp/httpd.conf
 	sudo mv /tmp/httpd.conf /etc/httpd/conf/httpd.conf
-	sudo apachectl restart
+	-sudo apachectl restart
 
 mysql:
 	sudo yum -y install mysql-server
