@@ -86,6 +86,8 @@ quickml: ruby
 
 gyazzdir:
 	@if ! test -e ${HOME}/Gyazz; then cd; git clone https://github.com/masui/Gyazz.git; fi
+	-mkdir ${HOME}/Gyazz/data
+	-sudo mkdir /var/log/httpd/gyazz
 
 gyazz: gyazzdir passenger
 	-sudo gem install sinatra
@@ -94,17 +96,15 @@ gyazz: gyazzdir passenger
 		-e 's!%HOME%!${HOME}!' \
 		> ${HOME}/Gyazz/lib/config.rb
 	echo '' > ${HOME}/Gyazz/public/index.html
-	-mkdir ${HOME}/Gyazz/data
-	-sudo mkdir /var/log/httpd/gyazz
 	chmod 755 ${HOME}
 	sudo apachectl restart
 
 hondanadir:
 	@if ! test -e ${HOME}/Hondana; then cd; git clone https://github.com/masui/Hondana.git; fi
-
-hondana: passenger mysql
-	sudo gem install rails --version 2.3.11 
 	-sudo mkdir /var/log/httpd/hondana
+
+hondana: hondanadir passenger mysql
+	sudo gem install rails --version 2.3.11 
 	-echo 'drop database hondana' | mysql -u root
 	echo 'create database hondana' | mysql -u root
 	mysql -u root hondana < Hondana/empty.txt
