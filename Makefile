@@ -18,6 +18,9 @@ postfix:
 		-e 's/%DOMAIN%/${DOMAIN}/' \
 		> /tmp/main.cf
 	sudo mv /tmp/main.cf /etc/postfix/main.cf
+	sudo chmod 644 /etc/postfix/main.cf
+	sudo chown root /etc/postfix/main.cf
+	sudo chgrp root /etc/postfix/main.cf
 	sudo /etc/rc.d/init.d/saslauthd start
 	sudo chkconfig saslauthd on
 	sudo /etc/rc2.d/S80postfix restart
@@ -30,7 +33,7 @@ dovecot:
 	-mkdir ${HOME}/Maildir
 	sudo /etc/rc2.d/S65dovecot restart
 
-quickml:
+quickml: ruby
 	-cd; git clone https://github.com/masui/QuickML.git
 	-mkdir ${HOME}/QuickML/mldata
 	cd; cd QuickML; ./configure
@@ -40,6 +43,9 @@ quickml:
 		-e 's/%DOMAIN%/${DOMAIN}/g' \
 		> /tmp/transport
 	sudo mv /tmp/transport /etc/postfix/transport
+	sudo chmod 644 /etc/postfix/transport
+	sudo chown root /etc/postfix/transport
+	sudo chgrp root /etc/postfix/transport
 	sudo postmap /etc/postfix/transport
 	cat usr/local/etc/quickmlrc | sed \
 		-e 's/%DOMAIN%/${DOMAIN}/' \
@@ -51,7 +57,8 @@ quickml:
 	-sudo mkdir /usr/local/share
 	-sudo mkdir /usr/local/share/quicml
 	-sudo mkdir /var/log/quickml
-	sudo cp ${HOME}/QuickML/messages.ja /usr/local/share/quickml
+	-sudo mkdir /usr/local/share/quickml
+	sudo cp ${HOME}/QuickML/messages.ja /usr/local/share/quickml/messages.ja
 	sudo cp etc/rc.d/rc.local /etc/rc.d/rc.local
 	sudo /usr/local/sbin/quickml-ctl start
 	echo '10 * * * * /usr/sbin/postfix stop; /usr/sbin/postfix start; /usr/local/sbin/quickml-ctl restart' > /tmp/crontab
