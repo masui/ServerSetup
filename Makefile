@@ -100,7 +100,7 @@ gyazz: gyazzdir passenger
 	sudo apachectl restart
 
 hondanadir:
-	@if ! test -e #{HOME}/Hondana; then cd; git clone https://github.com/masui/Hondana.git; fi
+	@if ! test -e ${HOME}/Hondana; then cd; git clone https://github.com/masui/Hondana.git; fi
 
 hondana: passenger mysql
 	sudo gem install rails --version 2.3.11 
