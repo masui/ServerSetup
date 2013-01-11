@@ -1,10 +1,14 @@
 #
 # さくらVPSにGyazzやQuickMLをインストールするスクリプト
+# OSはCentOS
 #
 # サーバのセットアップを一瞬でできるようになっていれば
-# サーバが腐っても困らないはずである
+# サーバが腐っても困らないはずなので、こういうのを頑張って
+# 用意しておくのも悪くないと思うのだがどうだろう?
 #
 # ■ masui.orgのセットアップの場合
+#
+# hondana.masui.org とか enkai@ml.masui.org とか使えるようになる
 #
 #   % ssh root@masui.org (さくらのルートパスワード入力)
 #   # adduser masui
@@ -24,6 +28,8 @@
 #
 # ■ メールだけ普通にインストールする場合はpostfixとdovecotだけ
 #    インストールすればいいが、QuickMLを入れても損は無いと思う
+#
+# 2013/01/11 14:17:47 masui@pitecan.com
 #
 
 DOMAIN=masui.org
