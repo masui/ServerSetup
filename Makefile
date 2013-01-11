@@ -48,6 +48,10 @@
 #  - Gyazo (gyazo.masui.org)
 #  - Gyamp (memo.masui.org)
 #  - Gyamm (archive.masui.org)
+#  - すべてのデータのバックアップをとるスクリプトを作る
+#   - Gyazz/data
+#   - QuickML/mldata
+#   - 本棚データのMySQLダンプ
 #
 # 2013/01/11 14:17:47 masui@pitecan.com
 #
