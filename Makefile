@@ -64,6 +64,8 @@ quickml: ruby
 	echo '10 * * * * /usr/sbin/postfix stop; /usr/sbin/postfix start; /usr/local/sbin/quickml-ctl restart' > /tmp/crontab
 	sudo crontab /tmp/crontab
 
+gyazzdir: ${HOME}/Gyazz
+	-cd; git clone https://github.com/masui/Gyazz.git
 gyazz: passenger
 	-sudo gem install sinatra
 	-sudo gem install json
